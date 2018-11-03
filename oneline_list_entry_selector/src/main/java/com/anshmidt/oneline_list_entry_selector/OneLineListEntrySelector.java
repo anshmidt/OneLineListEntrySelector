@@ -52,10 +52,11 @@ public class OneLineListEntrySelector extends RelativeLayout {
     private final boolean DEFAULT_DYNAMIC_WIDTH_ENABLED = false;
 
 
-
     private Context context;
     private AttributeSet attrs;
     private int styleAttr;
+
+    private OnValueChangeListener onValueChangeListener;
 
     private static final String LOG_TAG = OneLineListEntrySelector.class.getSimpleName();
 
@@ -90,19 +91,32 @@ public class OneLineListEntrySelector extends RelativeLayout {
         this.list = list;
         setEntry(initialEntryNumber);
         if (!dynamicWidthEnabled) {
-            setEntryViewWidth(((int) (getMaxStringWidthOfAllEntriesPx() + 2 * spToPx(DEFAULT_ENTRY_VIEW_HORIZONTAL_MARGIN))) + 1);
+            setEntryViewWidth(((int) (getMaxStringWidthOfAllEntriesPx()
+                    + 2 * spToPx(DEFAULT_ENTRY_VIEW_HORIZONTAL_MARGIN))) + 1);
         }
     }
 
     public void setEntry(int newEntryNumber) {
+        String oldValue = getEntry();
         String valueToSet = list.get(newEntryNumber).toString();
         entryView.setText(valueToSet);
         currentEntryNumber = newEntryNumber;
         setButtonsAppearance(newEntryNumber);
+        if (onValueChangeListener != null) {
+            onValueChangeListener.onValueChange(this, oldValue, valueToSet);
+        }
     }
 
     public String getEntry() {
         return entryView.getText().toString();
+    }
+
+    public void setOnValueChangeListener(OnValueChangeListener onValueChangeListener) {
+        this.onValueChangeListener = onValueChangeListener;
+    }
+
+    public interface OnValueChangeListener {
+        void onValueChange(OneLineListEntrySelector view, String oldValue, String newValue);
     }
 
     private void init() {
@@ -139,7 +153,6 @@ public class OneLineListEntrySelector extends RelativeLayout {
         entryView.setTextSize(textSizeSp);
 
 
-
         LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) entryView.getLayoutParams();
         params.setMargins(DEFAULT_ENTRY_VIEW_HORIZONTAL_MARGIN, 0, DEFAULT_ENTRY_VIEW_HORIZONTAL_MARGIN, 0);
         entryView.setLayoutParams(params);
@@ -167,7 +180,6 @@ public class OneLineListEntrySelector extends RelativeLayout {
                 setEntry(currentEntryNumber);
             }
         });
-
     }
 
     private void setCurrentEntryNumber(int newEntryNumber) {
@@ -207,7 +219,6 @@ public class OneLineListEntrySelector extends RelativeLayout {
         params.width = buttonSizePx;
         button.setLayoutParams(params);
     }
-
 
 
     private void setButtonsAppearance(int currentEntryNumber) {

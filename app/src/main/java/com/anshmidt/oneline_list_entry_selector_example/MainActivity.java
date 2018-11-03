@@ -2,6 +2,7 @@ package com.anshmidt.oneline_list_entry_selector_example;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.anshmidt.oneline_list_entry_selector.OneLineListEntrySelector;
 
@@ -23,6 +24,12 @@ public class MainActivity extends AppCompatActivity {
         sizesList.add("Large");
         sizeSelector.setList(sizesList);
         sizeSelector.setInitialEntryNumber(1);
+        sizeSelector.setOnValueChangeListener(new OneLineListEntrySelector.OnValueChangeListener() {
+            @Override
+            public void onValueChange(OneLineListEntrySelector view, String oldValue, String newValue) {
+                Toast.makeText(MainActivity.this, "New value is " + newValue, Toast.LENGTH_SHORT).show();
+            }
+        });
 
         OneLineListEntrySelector numbersSelector = findViewById(R.id.numbers_list_entry_selector);
         ArrayList<Integer> numbersList = new ArrayList<>();
@@ -30,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         numbersList.add(32);
         numbersList.add(64);
         numbersSelector.setList(numbersList);
+
 
 
         OneLineListEntrySelector prioritySelector = findViewById(R.id.priority_list_entry_selector);
