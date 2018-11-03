@@ -16,15 +16,31 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        OneLineListEntrySelector oneLineListEntrySelector = (OneLineListEntrySelector) findViewById(R.id.list_entry_selector);
-
-
+        OneLineListEntrySelector sizeSelector = findViewById(R.id.size_list_entry_selector);
         ArrayList<String> sizesList = new ArrayList<>();
         sizesList.add("Small");
         sizesList.add("Medium");
         sizesList.add("Large");
+        sizeSelector.setList(sizesList);
+        sizeSelector.setInitialEntryNumber(1);
 
-        oneLineListEntrySelector.setList(sizesList);
+        OneLineListEntrySelector numbersSelector = findViewById(R.id.numbers_list_entry_selector);
+        ArrayList<Integer> numbersList = new ArrayList<>();
+        numbersList.add(16);
+        numbersList.add(32);
+        numbersList.add(64);
+        numbersSelector.setList(numbersList);
+
+
+        OneLineListEntrySelector prioritySelector = findViewById(R.id.priority_list_entry_selector);
+        ArrayList<String> prioritiesList = new ArrayList<>();
+        prioritiesList.add("Minor");
+        prioritiesList.add("Normal");
+        prioritiesList.add("Major");
+        prioritiesList.add("Critical");
+        prioritySelector.setList(prioritiesList);
+        prioritySelector.setInitialEntryNumber(prioritiesList.indexOf("Normal"));
+
 
     }
 }

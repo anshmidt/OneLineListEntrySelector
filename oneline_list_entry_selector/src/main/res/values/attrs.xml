@@ -5,6 +5,17 @@
         <attr name="backgroundColor" format="color"/>
         <attr name="textColor" format="color"/>
 
+        <!--If not specified, then buttonColor equals to textColor-->
+        <attr name="buttonColor" format="color"/>
+
         <attr name="textSize" format="dimension"/>
+        <attr name="buttonSize" format="dimension"/>
+        <attr name="buttonPadding" format="dimension"/>
+
+        <!--If false, the width of the textview doesn't change when different entries are selected, it
+        always equals to the length of the longest entry.
+        If true, the width of the textview equals to the length of the current entry, i.e. it's
+        dynamic-->
+        <attr name="dynamicWidthEnabled" format="boolean"/>
     </declare-styleable>
 </resources>
