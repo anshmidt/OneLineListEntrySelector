@@ -130,6 +130,10 @@ public class OneLineListEntrySelector extends RelativeLayout {
         }
     }
 
+    public void setTextColor(int textColor) {
+        entryView.setTextColor(textColor);
+    }
+
     public void setOnValueChangeListener(OnValueChangeListener onValueChangeListener) {
         this.onValueChangeListener = onValueChangeListener;
     }
@@ -167,7 +171,7 @@ public class OneLineListEntrySelector extends RelativeLayout {
 
         layout.setBackgroundColor(backgroundColor);
 
-        entryView.setTextColor(textColor);
+        setTextColor(textColor);
         setTextStyle(textStyle);
         upButton.setColorFilter(buttonColor);
         downButton.setColorFilter(buttonColor);
