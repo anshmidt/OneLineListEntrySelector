@@ -58,6 +58,24 @@ the current entry, i.e. it's dynamic)
 `setOnValueChangeListener(OnValueChangeListener onValueChangeListener)`
 
 
+## How to add the library to your project
+Consider using jitpack. <br/>
+Add to your root build.gradle at the end of repositories:
+```
+allprojects {
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
+    }
+}
+```
+and add the dependency to build.gradle of your app:
+```
+dependencies {
+    implementation 'com.github.anshmidt:OneLineListEntrySelector:1.0'
+}
+```
+
 
 ## minSdkVersion
 minSdkVersion = API 21
