@@ -9,6 +9,11 @@
         <attr name="buttonColor" format="color"/>
 
         <attr name="textSize" format="dimension"/>
+        <attr name="textStyle">
+            <flag name="normal" value="0" />
+            <flag name="bold" value="1" />
+            <flag name="italic" value="2" />
+        </attr>
         <attr name="buttonSize" format="dimension"/>
         <attr name="buttonPadding" format="dimension"/>
 

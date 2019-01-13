@@ -38,6 +38,9 @@ public class OneLineListEntrySelector extends RelativeLayout {
     private final int DEFAULT_BUTTON_PADDING = 20;
     private final float DEFAULT_BUTTONS_SIZE_COEFF = 2.5f;
 
+    private final int DEFAULT_TEXT_STYLE = 0; //normal
+    private int textStyle;
+
     private int defaultBackgroundColor;
     private int backgroundColor;
     private int defaultTextColor;
@@ -111,6 +114,22 @@ public class OneLineListEntrySelector extends RelativeLayout {
         return entryView.getText().toString();
     }
 
+    public void setTextStyle(int textStyle) {
+        switch (textStyle) {
+            case 1: {
+                entryView.setTypeface(null, Typeface.BOLD);
+                break;
+            }
+            case 2: {
+                entryView.setTypeface(null, Typeface.ITALIC);
+                break;
+            }
+            default: {
+                entryView.setTypeface(null, Typeface.NORMAL);
+            }
+        }
+    }
+
     public void setOnValueChangeListener(OnValueChangeListener onValueChangeListener) {
         this.onValueChangeListener = onValueChangeListener;
     }
@@ -131,6 +150,8 @@ public class OneLineListEntrySelector extends RelativeLayout {
         buttonSizeDp = pxToSp(a.getDimension(R.styleable.OneLineListEntrySelector_buttonSize, defaultButtonSizeSp));
         buttonPaddingDp = (int) pxToSp(a.getDimension(R.styleable.OneLineListEntrySelector_buttonPadding, spToPx(DEFAULT_BUTTON_PADDING)));
 
+        textStyle = a.getInt(R.styleable.OneLineListEntrySelector_textStyle, DEFAULT_TEXT_STYLE);
+
         backgroundColor = a.getColor(R.styleable.OneLineListEntrySelector_backgroundColor, defaultBackgroundColor);
         textColor = a.getColor(R.styleable.OneLineListEntrySelector_textColor, defaultTextColor);
         buttonColor = a.getColor(R.styleable.OneLineListEntrySelector_buttonColor, textColor);
@@ -147,6 +168,7 @@ public class OneLineListEntrySelector extends RelativeLayout {
         layout.setBackgroundColor(backgroundColor);
 
         entryView.setTextColor(textColor);
+        setTextStyle(textStyle);
         upButton.setColorFilter(buttonColor);
         downButton.setColorFilter(buttonColor);
 

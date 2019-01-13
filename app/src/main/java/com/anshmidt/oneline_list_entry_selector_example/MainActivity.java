@@ -1,5 +1,6 @@
 package com.anshmidt.oneline_list_entry_selector_example;
 
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -48,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         prioritiesList.add("Critical");
         prioritySelector.setList(prioritiesList);
         prioritySelector.setInitialEntryNumber(prioritiesList.indexOf("Normal"));
+        prioritySelector.setTextStyle(Typeface.ITALIC);
 
 
     }
